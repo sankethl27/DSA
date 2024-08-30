@@ -140,7 +140,7 @@ class Heap{
 			heapify(); // first heapify the given arbitary array
 			vector<int> sortedArray;
 			//since we are extracting min size will be 
-			//decreases dynamically so store it separately and use that
+			//decreemnted dynamically and can affect loops range, so store it separately and use that
 			int s = a.size();
 			for(int i=0;i<s;i++){
 				sortedArray.push_back(extractMin());
