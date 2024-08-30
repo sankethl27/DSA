@@ -70,9 +70,9 @@ class Heap{
 	
 		int extractMin(){
 			int size= a.size();
-			if(size == 0 ) {
+			if(a.size() == 0 ) {
 				cout<<"\nArray is Empty ,size : ";
-				return 0;
+				return -1;
 			}
 			int minimum = a[0];
 			swap(a[0],a[size-1]);
@@ -126,6 +126,7 @@ class Heap{
 			a[i] = INT_MIN;
 			shiftUp(i);
 			extractMin();
+
 		}
 
 		void printHeap(){
@@ -137,15 +138,18 @@ class Heap{
 		//O(nlog(n)) n for heapify and logn for extracting min
 		void heapSort(){
 			heapify(); // first heapify the given arbitary array
-			printHeap();
 			vector<int> sortedArray;
-			for(int i=0;i<size;i++){
+			//since we are extracting min size will be 
+			//decreases dynamically so store it separately and use that
+			int s = a.size();
+			for(int i=0;i<s;i++){
 				sortedArray.push_back(extractMin());
 			} 
-
+			cout<<"Sorted Array : ";
 			for(auto& ele : sortedArray){
 				cout<<ele<<" ";
 			}
+
 		}
 };
 
@@ -155,14 +159,8 @@ class Heap{
 int main(){
 	vector<int> a = {20,30,40,25,15};
 	Heap h(a);
-	// cout<<"Min Before Extraction :"<<h.getMin()<<"\n";
-	// cout<<"Extract Min : " << h.extractMin()<<"\n";
-	// cout<<"Min After Extraction :"<<h.getMin()<<"\n";
-	
-	h.insert(3);
 	h.heapify();
-	h.heapSort();	
-	cout<<"\nExtract Min : " << h.extractMin();
-	// h.shiftUp();
-	// h.shiftDown();
+	// h.deleteKey(0);	
+	cout<<"Extract Min : " << h.extractMin()<<endl;
+	h.heapSort();
 }
